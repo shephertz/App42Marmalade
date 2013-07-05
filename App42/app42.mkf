@@ -1,0 +1,30 @@
+
+includepath source
+
+library
+{
+	".,app42"
+}
+
+files
+{
+	(source/User)
+	UserService.h
+    App42UserResult.h
+	
+	(source/Storage)
+	StorageService.h
+    App42StorageResult.h
+	
+
+	(source/Game)
+	GameService.h
+	ScoreBoardService.h
+	ScoreService.h
+	RewardService.h
+    App42GameResult.h
+    App42RewardResult.h
+
+	(source)
+	App42Result.h
+}
