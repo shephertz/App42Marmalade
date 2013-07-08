@@ -9,16 +9,6 @@ Manage your application and its data using [AppHQ – App42 Management Console] 
 * [App42 Marmalade services] (https://github.com/shephertz/App42Marmalade/wiki/Marmalade-API-Refrence)
 * [Sample walkthrough] (https://github.com/shephertz/App42Marmalade/wiki/How-to-start-with-marmalade)
 
-For running the sample code you need apiKey & secretKey and the gameName for which you can save user score and get top rankers etc. 
-
-After creating the app from AppHQ you get the apiKey & secretKey of your sample app.
-Now you can create your game from AppHQ Menu by giving the name of the game and description for it :-
-
-Business Service Manager -> Game Service -> Add Game.
-
-
-After putting the credentials in main.cpp you are ready to use.
-
 
 
 
