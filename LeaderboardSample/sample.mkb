@@ -1,0 +1,15 @@
+option module_path="../App42"
+define IW_HTTP_SSL
+
+subproject
+{
+	app42
+	iwhttp
+	iwnui
+}
+
+files
+{
+	(source)
+	main.cpp
+}

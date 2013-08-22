@@ -1,0 +1,16 @@
+
+option module_path="../Marmalade"
+define IW_HTTP_SSL
+
+subproject
+{
+	app42
+	iwhttp
+	iwnui
+}
+
+files
+{
+	(source)
+	main.cpp
+}
