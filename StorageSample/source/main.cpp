@@ -188,8 +188,8 @@ public:
 
 int main()
 {	
-	std::string api_key = "Your_API_KEY";
-    std::string secret_key = "Your_SECRET_KEY";
+	std::string api_key = "30de7e0dcf044cb4c5b46b606868a619a7057e727312392a0f346aafb3036e0f";
+    std::string secret_key = "80375913972b990a07495686c40ebe012672aa9821d1999e19b9459a3f133191";
 
 	IwNUI::CAppPtr app = IwNUI::CreateApp();
 	App *myapp = new App(app);

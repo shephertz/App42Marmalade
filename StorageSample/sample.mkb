@@ -1,5 +1,5 @@
 
-option module_path="../Marmalade"
+option module_path="../1.0/App42"
 define IW_HTTP_SSL
 
 subproject
