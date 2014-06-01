@@ -11,8 +11,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 
 // fwd declaration
 class App42Result;
@@ -31,11 +29,11 @@ class App42Result{
 
 protected:
     int _result;
-    string _body;
+    std::string _body;
     HttpRequest* _httpRequest;
     
 public:
-    App42Result(int code, string body, HttpRequest* request);
+    App42Result(int code, std::string body, HttpRequest* request);
     
     virtual ~App42Result();
     
@@ -43,7 +41,7 @@ public:
     int getCode();
     
     // The JSON body of the HTTP response containing details
-    string getBody();
+    std::string getBody();
 };
 
 
