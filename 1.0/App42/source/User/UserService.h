@@ -61,7 +61,7 @@ public:
 	void CreateUser(const std::string& userName, const std::string& password, const std::string& email, IApp42Callback* callBack);
 
     /**
-    * This function enables you to create App users along with granting them specific roles.Required Parameters
+    * This function enables you to create App users along with granting them specific roles.
     * @param userName - Name of the user for whom the user session is to be created.
     * @param pwd - Password for the user.
     * @param emailId - EmailId of the user.
