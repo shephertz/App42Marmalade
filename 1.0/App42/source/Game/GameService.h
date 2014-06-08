@@ -9,9 +9,9 @@
 #ifndef __App42__GameService__
 #define __App42__GameService__
 
-#include <iostream>
-#include <map>
 #include "App42Result.h"
+#include <map>
+#include <string>
 
 class GameService{
 
