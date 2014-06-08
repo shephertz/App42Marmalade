@@ -18,3 +18,4 @@ At the moment these are implemented:
  - [ScoreBoard / Leaderboard] (http://api.shephertz.com/app42-docs/leaderboard-service/) (1st June 2014)
  - [User] (http://api.shephertz.com/app42-docs/user-management-service/) (8th June 2014)
  - [Storage] (http://api.shephertz.com/app42-docs/nosql-storage-service/) (partly)
+ - [Push Notifications] (http://api.shephertz.com/app42-docs/push-notification-service/) (8th June 2014)
