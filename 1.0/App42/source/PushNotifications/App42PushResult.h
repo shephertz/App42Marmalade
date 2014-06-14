@@ -1,5 +1,5 @@
 //
-//  App42UserResult.h
+//  App42PushResult.h
 //  app42
 //
 //  Created by damucz on 6/8/14.
