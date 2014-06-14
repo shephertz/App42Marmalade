@@ -19,3 +19,5 @@ At the moment these are implemented:
  - [User] (http://api.shephertz.com/app42-docs/user-management-service/) (8th June 2014)
  - [Storage] (http://api.shephertz.com/app42-docs/nosql-storage-service/) (partly)
  - [Push Notifications] (http://api.shephertz.com/app42-docs/push-notification-service/) (8th June 2014)
+ - [Reward] (http://api.shephertz.com/app42-docs/reward-management-service/) (14th June 2014)
+ - [Review] (http://api.shephertz.com/app42-docs/review-rating-service/) (14th June 2014)
