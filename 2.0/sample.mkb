@@ -1,0 +1,102 @@
+#!/usr/bin/env mkb
+
+options { cflags="-std=c++11" 
+"enable-exceptions"=1
+}
+
+define IW_HTTP_SSL
+
+files
+{
+    MySDK.cpp
+	
+	[App42/cJSON]
+	(App42/cJSON)
+	"*.h"
+	"*.cpp"
+	
+	[App42/Util]
+	(App42/Util)
+	"*.h"
+	
+	[App42/App42HTTP]
+	(App42/App42HTTP)
+	"*.h"
+	"*.cpp"
+	
+	[App42/Common]
+	(App42/Common)
+	"*.h"
+	"*.cpp"
+	
+	[App42/Crypto]
+	(App42/Crypto)
+	"*.h"
+	"*.cpp"
+	
+	[App42/UserService]
+	(App42/UserService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/AvatarService]
+	(App42/AvatarService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/BuddyService]
+	(App42/BuddyService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/CustomCodeService]
+	(App42/CustomCodeService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/EmailService]
+	(App42/EmailService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/GameService]
+	(App42/GameService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/PushNotificationService]
+	(App42/PushNotificationService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/SessionService]
+	(App42/SessionService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/SocialService]
+	(App42/SocialService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/StorageService]
+	(App42/StorageService)
+	"*.h"
+	"*.cpp"
+	
+	[App42/TimerService]
+	(App42/TimerService)
+	"*.h"
+	"*.cpp"
+}
+
+subprojects
+{
+    iwutil
+    iwhttp
+	iwgx
+}
+
+deployment
+{
+}
