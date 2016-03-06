@@ -8,15 +8,20 @@ library
 
 files
 {
+	(source)
+	App42Result.h
+
+	[user]
 	(source/User)
 	UserService.h
     App42UserResult.h
 	
+	[storage]
 	(source/Storage)
 	StorageService.h
     App42StorageResult.h
 	
-
+	[game]
 	(source/Game)
 	GameService.h
 	ScoreBoardService.h
@@ -24,7 +29,14 @@ files
 	RewardService.h
     App42GameResult.h
     App42RewardResult.h
-
-	(source)
-	App42Result.h
+	
+	[push]
+	(source/PushNotifications)
+	PushService.h
+	App42PushResult.h
+	
+	[review]
+	(source/Review)
+	ReviewService.h
+	App42ReviewResult.h
 }

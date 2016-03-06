@@ -10,9 +10,9 @@
 #define __App42__ScoreBoardService__
 
 #include <iostream>
+#include <map>
+#include <vector>
 #include "App42Result.h"
-
-using namespace std;
 
 /**
  * ScoreBoard allows storing, retrieving, querying and ranking scores for users
@@ -34,11 +34,13 @@ using namespace std;
 class ScoreBoardService{
 
 private:
-	string SERVER_ADDRESS;
-	string API_KEY;
-	string SECRET_KEY;
-	string GetBaseUrl(string resource);
-	string BuildCompletePostUrl(string baseUrl, string body);
+	std::string SERVER_ADDRESS;
+	std::string API_KEY;
+	std::string SECRET_KEY;
+	std::string GetBaseUrl(const std::string& resource);
+	std::string BuildCompletePostUrl(const std::string& baseUrl, const std::string& body);
+    std::string BuildCompleteGetUrl(const std::string& baseUrl, const std::map<std::string, std::string>& data);
+    std::string BuildCompleteGetUrl(const std::string& baseUrl);
 	static ScoreBoardService* _instance;
 	ScoreBoardService();
 public:
@@ -50,7 +52,7 @@ public:
 	* @param server
 	* 
 	*/
-	static void Initialize(string apikey, string secretkey, string server="api.shephertz.com");
+	static void Initialize(const std::string& apikey, const std::string& secretkey, const std::string& server="api.shephertz.com");
 	static void Terminate();
 	/**
 	* Builds the instance of ScoreBoardService.
@@ -67,16 +69,34 @@ public:
 	* @return app42Result - The result of the request.
 	* 
 	*/
-	void SaveUserScore(string gameName,string userName, double score, IApp42Callback* callBack);
+	void SaveUserScore(const std::string& gameName,const std::string& userName, double score, IApp42Callback* callBack);
+    /**
+     * Retrieves the scores for the specified user of a specific game.
+     *
+     * @param gameName - Name of the game for which scores are to be fetched.
+     * @param userName - User for which scores are to be fetched.
+     * @return app42Result - The result of the request.
+     *
+     */
+    void GetScoresByUser(const std::string& gameName, const std::string& userName, IApp42Callback* callBack);
 	/**
 	* Retrieves the highest game score for the specified user
 	* 
-	* @param gameName - Name of the game for which highest score has to be fetched
-	* @param userName - The user for which highest score has to be fetched
+	* @param gameName - Name of the game for which highest score has to be saved
+	* @param userName - The user for which highest score has to be saved
 	* @return app42Result - The result of the request.
 	* 
 	*/
-	void GetHighestScoreByUser(string gameName,string userName , IApp42Callback* callBack);
+	void GetHighestScoreByUser(const std::string& gameName,const std::string& userName , IApp42Callback* callBack);
+	/**
+	* Retrieves the lowest game score for the specified user
+	* 
+	* @param gameName - Name of the game for which highest score has to be saved
+	* @param userName - The user for which highest score has to be saved
+	* @return app42Result - The result of the request.
+	* 
+	*/
+	void GetLowestScoreByUser(const std::string& gameName,const std::string& userName , IApp42Callback* callBack);
 	/**
 	* Retrieves the average game score for the specified user
 	* 
@@ -85,16 +105,7 @@ public:
 	* @return app42Result - The result of the request.
 	* 
 	*/
-	void GetAverageScoreByUser(string gameName, string userName, IApp42Callback* callBack);
-	/**
-	* This function returns the top score attained by the specified user in the game.
-	* 
-	* @param gameName - Name of the game
-	* @param userName - Name of the user for which score has to retrieve
-	* @return app42Result - The result of the request.
-	* 
-	*/
-	void GetLastScoreByUser(string gameName,string userName,IApp42Callback* callBack);
+	void GetAverageScoreByUser(const std::string& gameName, const std::string& userName, IApp42Callback* callBack);
 	/**
 	* Retrieves the Top Rankings for the specified game
 	* 
@@ -102,7 +113,65 @@ public:
 	* @return app42Result - The result of the request.
 	* 
 	*/
-	void GetTopRankings(string gameName,IApp42Callback* callBack);
+	void GetTopRankings(const std::string& gameName,IApp42Callback* callBack);
+	/**
+	* Retrieves the Top Rankings for the specified game and time interval
+	* 
+	* @param gameName - Name of the game for which ranks have to be fetched
+    * @param startDate - Start of the time interval in format 'yyyy-mm-ddThh:mm:ss.miliZ'
+    * @param endDate - End of the time interval in format 'yyyy-mm-ddThh:mm:ss.miliZ'
+	* @return app42Result - The result of the request.
+	* 
+	*/
+    void GetTopRankingsByDate(const std::string& gameName, const std::string& startDate, const std::string& endDate, IApp42Callback* callBack);
+	/**
+	* Retrieves the Top Rankings for the specified game and group of users
+	* 
+	* @param gameName - Name of the game for which ranks have to be fetched
+    * @param userList - List of the users in group to be fetched
+	* @return app42Result - The result of the request.
+	* 
+	*/
+    void GetTopRankingsByGroup(const std::string& gameName, const std::vector<std::string>& userList, IApp42Callback* callBack);
+	/**
+	* Retrieves the Top N Rankings for the specified game
+	* 
+	* @param gameName - Name of the game for which ranks have to be fetched
+    * @param max - Maximum number of records to be fetched.
+	* @return app42Result - The result of the request.
+	* 
+	*/
+	void GetTopNRankings(const std::string& gameName, int max, IApp42Callback* callBack);
+    /**
+    * Retrieves the Top N Ranked users for the specified game and time interval
+    * 
+    * @param gameName - Name of the game for which ranks have to be fetched
+    * @param max - Maximum number of records to be fetched.
+    * @return app42Result - The result of the request.
+    * 
+    */
+    void GetTopNRankers(const std::string& gameName, int max, IApp42Callback* callBack);
+    /**
+    * Retrieves the Top N Ranked users for the specified game
+    * 
+    * @param gameName - Name of the game for which ranks have to be fetched
+    * @param startDate - Start of the time interval in format 'yyyy-mm-ddThh:mm:ss.miliZ'
+    * @param endDate - End of the time interval in format 'yyyy-mm-ddThh:mm:ss.miliZ'
+    * @param max - Maximum number of records to be fetched.
+    * @return app42Result - The result of the request.
+    * 
+    */
+    void GetTopNRankersByDate(const std::string& gameName, const std::string& startDate, const std::string& endDate, int max, IApp42Callback* callBack);
+	/**
+	* Retrieves the Top N Ranked users for the specified game and group of users
+	* 
+	* @param gameName - Name of the game for which ranks have to be fetched
+    * @param userList - List of the users in group to be fetched
+    * @param max - Maximum number of records to be fetched.
+	* @return app42Result - The result of the request.
+	* 
+	*/
+    void GetTopNRankersByGroup(const std::string& gameName, const std::vector<std::string>& userList, int max, IApp42Callback* callBack);
 	/**
 	* Retrieves the User Ranking for the specified game
 	* 
@@ -111,7 +180,73 @@ public:
 	* @return app42Result - The result of the request.
 	* 
 	*/
-	void GetUserRanking(string gameName, string userName,IApp42Callback* callBack); 
+	void GetUserRanking(const std::string& gameName, const std::string& userName,IApp42Callback* callBack); 
+	/**
+	* This function returns the top score attained by the specified user in the game.
+	* 
+	* @param gameName - Name of the game
+	* @param userName - Name of the user for which score has to retrieve
+	* @return app42Result - The result of the request.
+	* 
+	*/
+	void GetLastScoreByUser(const std::string& gameName,const std::string& userName,IApp42Callback* callBack);
+	/**
+	* This function returns the score attained by the specified user in the last game session.
+	* 
+	* @param userName - Name of the user for which score has to retrieve
+	* @return app42Result - The result of the request.
+	* 
+	*/
+	void GetLastGameScore(const std::string& gameName, IApp42Callback* callBack);
+	/**
+	* Edit the score value of the game in existing score id.
+	* 
+    * @param scoreId - ScoreId of the gameUser for which value has to be edited.
+    * @param gameScore - The score that has to be added.
+	* @return app42Result - The result of the request.
+	* 
+	*/
+	void EditScoreValueById(const std::string& scoreId, double gameScore, IApp42Callback* callBack);
+    /**
+    * This function returns the specified number of top rankers in a specific game from buddy group.
+    * @param gameName- Name of the game.
+    * @param userName- Name of the user who fetch top rankers from group.
+    * @param ownerName- Group owner name.
+    * @param groupName- Name of the group.
+    * @return app42Result - The result of the request.
+    * 
+    */
+    void GetTopRankersFromBuddyGroup(const std::string& gameName, const std::string& userName, const std::string& ownerName, const std::string& groupName, IApp42Callback* callBack);
+    /**
+    * This method helps to fetch the top N rankers from your facebook friends.
+    * 
+    * @param gameName - Name of the game for which ranks have to be fetched
+    * @param accessToken - Facebook access token of the user who is fetching the record.
+    * @param max - Maximum number of records to be fetched.
+    * @return app42Result - The result of the request.
+    * 
+    */
+    void GetTopNRankersFromFacebook(const std::string& gameName, const std::string& accessToken, int max, IApp42Callback* callBack);
+    /**
+    * Fetch the top N rankers from your facebook friends between specific date.
+    * 
+    * @param gameName - Name of the game for which ranks have to be fetched
+    * @param accessToken - Facebook access token of the user who is fetching the record.
+    * @param startDate - Start of the time interval in format 'yyyy-mm-ddThh:mm:ss.miliZ'
+    * @param endDate - End of the time interval in format 'yyyy-mm-ddThh:mm:ss.miliZ'
+    * @param max - Maximum number of records to be fetched.
+    * @return app42Result - The result of the request.
+    * 
+    */
+    void GetTopNRankersFromFacebookByDate(const std::string& gameName, const std::string& accessToken, const std::string& startDate, const std::string& endDate, int max, IApp42Callback* callBack);
+    /**
+    * Fetch the top N target rankers from your game.Required Parameters
+    * @param gameName - Game name for which top N rankers has to fetch.
+    * @param max - Max number of rankers to be fetched.
+    * @return app42Result - The result of the request.
+    * 
+    */
+    void GetTopNTargetRankers(const std::string& gameName, int max, IApp42Callback* callBack);
 };
 
 #endif /* defined(__App42__GameService__) */

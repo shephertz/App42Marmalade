@@ -4,28 +4,31 @@
 #include <iostream>
 #include "App42Result.h"
 #include <vector>
-
-using namespace std;
+#include <string>
 
 struct App42Reward;
 
 class App42RewardResult : public App42Result
 {
 public:
-    App42RewardResult(int code, string body, HttpRequest* request);
-    vector<App42Reward> rewards;
+    App42RewardResult(int code, const std::string& body, HttpRequest* request);
+    std::vector<App42Reward> rewards;
+    int totalRecords;
 	~App42RewardResult();    
     
 private:
-    void init();
+    void Init();
 };
 
 typedef struct App42Reward
 {
-    string name;
-    string gameName;
+    App42Reward() : points(0.0), rank(0) {}
+    std::string name;
+    std::string gameName;
+    std::string userName;
 	double points;
-    string description;
+    std::string description;
+    int rank;
 }App42Reward;
 
 #endif /* defined(__app42__App42RewardResult__) */

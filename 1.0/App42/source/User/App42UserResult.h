@@ -12,27 +12,31 @@
 #include <iostream>
 #include "App42Result.h"
 #include <vector>
-
-using namespace std;
+#include "UserService.h"
 
 struct App42User;
 
 class App42UserResult : public App42Result
 {
 public:
-    App42UserResult(int code, string body, HttpRequest* request);
-    vector<App42User> users;
+    App42UserResult(int code, const std::string& body, HttpRequest* request);
+    std::vector<App42User> users;
+    int totalRecords;
 	~App42UserResult();
 private:
-    void init();
+    void Init();
 };
 
 typedef struct App42User
 {
-    string userName;
-    string email;
+    std::string userName;
+    std::string email;
     bool accountLocked;
-    
+    std::string sessionId;
+    // @todo password? (hashed) ChangeUserPassword
+    std::vector<std::string> roles;
+
+    UserService::Profile profile;
 }App42User;
 
 #endif /* defined(__app42__App42UserResult__) */
